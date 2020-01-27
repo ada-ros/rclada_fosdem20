@@ -60,23 +60,34 @@ begin
             Vlin, Vang : ROSIDL.Types.Float64;
             Period     : Duration;
          end record;
-         Walk : constant Twist := (1.0, 0.0, 1.0);
          Twists : constant array (Positive range <>) of Twist :=
                     ((0.0, 0.0, 1.0),
-                     (0.0, 1.0, 1.0), Walk,
-                     (0.0, -2.0, 1.0), Walk,
-                     (0.0, 1.0, 1.0),
-                     (0.0, 1.57, 0.8),
-                     (0.0, -1.57, 1.0), (0.7, -1.57, 2.0),
-                     (0.0, 3.1416, 1.0), Walk,
-                     (0.0, 1.0, 1.0), Walk,
-                     (0.0, -2.0, 1.0), Walk,
-                     (0.0, 1.0, 1.0), Walk);
+                     (0.0, 0.0, 1.0), -- Warm-up
+                     (0.0, 1.11, 1.0),
+                     (2.24, 0.0, 1.0), -- Half A
+                     (0.0, -2.22, 1.0),
+                     (2.24, 0.0, 1.0), -- Half A
+                     (0.0, 1.11, 1.0), (0.0, 1.57, 1.0),
+                     (2.0, 0.0, 1.0),  -- Half D
+                     (0.0, -1.57, 1.0),
+                     (1.57, -1.57, 1.0), -- Half D
+                     (1.57, -1.57, 1.0), -- Half D
+                     (0.0, 3.1416, 1.0),
+                     (1.0, 0.0, 1.0), -- Base
+                     (0.0, 1.11, 1.0),
+                     (2.24, 0.0, 1.0), -- Half A
+                     (0.0, -2.22, 1.0),
+                     (2.24, 0.0, 1.0), -- Half A
+                     (0.0, -2.22, 1.0),
+                     (6.66, 0.0, 1.0)); -- Bye
+         Count : Natural := 0;
       begin
          for T of Twists loop
+            Count := Count + 1;
             MsgDraw ("linear.x").As_Float64 := T.Vlin;
             MsgDraw ("angular.z").As_Float64 := T.Vang;
             Pub.Publish (MsgDraw);
+            Logging.Info ("Sent default command" & Count'Img);
             delay T.Period;
          end loop;
       end Draw;
