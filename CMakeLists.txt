@@ -9,7 +9,7 @@ find_package(rclada REQUIRED)
 find_package(rosidl_generator_ada REQUIRED)
 
 ada_import_c_libraries(${geometry_msgs_LIBRARIES})
-ada_import_msgs(geometry_msgs)
+ada_import_interfaces(geometry_msgs)
 
 ada_add_executables(
         fosdem20.gpr
