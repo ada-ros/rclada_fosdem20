@@ -1,4 +1,3 @@
-with "clib_geometry_msgs_rosidl_typesupport_c";
 with "rcl";
 
 project Fosdem20 is
