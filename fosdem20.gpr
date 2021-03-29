@@ -1,4 +1,5 @@
 with "rcl";
+with "ros2_interfaces_rclada_fosdem20";
 
 project Fosdem20 is
 

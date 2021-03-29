@@ -10,14 +10,18 @@ with ROSIDL.Dynamic;
 with ROSIDL.Types;
 with ROSIDL.Typesupport;
 
+with ROSIDL.Static.Rclada_Fosdem20.Geometry_Msgs.Messages.Twist;
+
 procedure Turtlesim_Command is
+
+   package Ros2 renames ROSIDL.Static.Rclada_Fosdem20;
 
    use RCL;
    use all type ROSIDL.Types.Float64;
 
    Support : constant ROSIDL.Typesupport.Message_Support :=
-               ROSIDL.Typesupport.Get_Message_Support
-                 ("geometry_msgs", "Twist");
+               Ros2.Geometry_Msgs.Messages.Twist.Handling.Support;
+
    MsgDraw : ROSIDL.Dynamic.Message := ROSIDL.Dynamic.Init (Support);
    MsgLin  : ROSIDL.Dynamic.Message := ROSIDL.Dynamic.Init (Support);
    MsgRot  : ROSIDL.Dynamic.Message := ROSIDL.Dynamic.Init (Support);

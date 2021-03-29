@@ -4,11 +4,11 @@ project(rclada_fosdem20 VERSION 0.1.0)
 find_package(rclada_common REQUIRED)
 ada_begin_package()
 
-find_package(geometry_msgs REQUIRED)
+#find_package(geometry_msgs REQUIRED)
 find_package(rclada REQUIRED)
 find_package(rosidl_generator_ada REQUIRED)
 
-ada_import_c_libraries(${geometry_msgs_LIBRARIES})
+#ada_import_c_libraries(${geometry_msgs_LIBRARIES})
 ada_import_interfaces(geometry_msgs)
 
 ada_add_executables(
